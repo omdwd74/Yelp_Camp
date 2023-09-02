@@ -3,28 +3,18 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-
 const ejsMate= require('ejs-mate');
 const session = require('express-session');
-
 const ExpressError = require('./utils/ExpressError');
-
 const flash = require('connect-flash');
-
-// const campgrounds = require('./routes/campgrounds');
-// const reviews = require('./routes/reviews');
-
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 
+
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
-
-
-
-// app.use(express.static(path.join(__dirname, 'public')))
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp',{
     useNewUrlParser:true,
@@ -76,13 +66,6 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error');
     next();
 })
-
-// app.get('/fakeUser',async(req,res)=>{
-//     const user = new User({email:'omjidwivedi49@gmail.com',username:'OM JI DWIVEDI'})
-//     const newUser = await User.register(user, 'omdwd')
-//     res.send(newUser);
-
-// })
 
 app.use('/',userRoutes);
 app.use('/campgrounds',campgroundRoutes);
