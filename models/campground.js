@@ -32,7 +32,7 @@ CampgroundSchema.post('findOneAndDelete', async function (doc) {
             }
         })
     
-    // console.log(doc);
+    // console.log(doc);    
     }
 })
 
